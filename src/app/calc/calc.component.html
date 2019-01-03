@@ -1,0 +1,42 @@
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+<div style="text-align:center">
+ 
+  <table >
+    <tr>
+      <td colspan="4" class="eval">{{evaluation}}</td>
+    </tr>
+     
+    <tr>
+      <td colspan="4" class="calculations" >{{calculations}}</td>
+    </tr>
+    <tr>
+      <td class="firstRow" (click)="initialiseEntry()">C</td>
+      <td class="firstRow" (click)="enter(model.operators.plusMinus)">{{model.operators.plusMinus}}</td> 
+      <td class="firstRow" (click)="enter(model.operators.percent)">{{model.operators.percent}}</td>
+      <td class="operator" (click)="enter(model.operators.divide)">{{model.operators.divide}}</td>
+    </tr>
+    <tr>
+      <td class="num" (click)="enter(model.numbers[7])">{{model.numbers[7]}}</td>
+      <td class="num" (click)="enter(model.numbers[8])">{{model.numbers[8]}}</td> 
+      <td class="num" (click)="enter(model.numbers[9])" >{{model.numbers[9]}}</td>
+      <td class="operator" (click)="enter(model.operators.multiply)">{{model.operators.multiply}}</td>
+    </tr>
+    <tr>
+      <td class="num" (click)="enter(model.numbers[4])">{{model.numbers[4]}}</td>
+      <td class="num" (click)="enter(model.numbers[5])">{{model.numbers[5]}}</td> 
+      <td class="num" (click)="enter(model.numbers[6])">{{model.numbers[6]}}</td>
+      <td class="operator" (click)="enter(model.operators.minus)">{{model.operators.minus}}</td>
+    </tr>
+    <tr>
+      <td class="num" (click)="enter($event.srcElement.innerHTML)">{{model.numbers[1]}}</td>
+      <td class="num" (click)="enter(model.numbers[2])">{{model.numbers[2]}}</td> 
+      <td class="num" (click)="enter(model.numbers[3])">{{model.numbers[3]}}</td>
+      <td class="operator" (click)="enter(model.operators.add)">{{model.operators.add}}</td>
+    </tr>
+    <tr>
+      <td class="num" colspan="2" (click)="enter(model.numbers[0])">{{model.numbers[0]}}</td>
+      <td (click)="enter(model.operators.decimal)">{{model.operators.decimal}}</td>
+      <td class="operator" (click)="calculate()">=</td>
+    </tr>
+  </table>
+</div>
