@@ -17,6 +17,7 @@ export class CalcComponent implements OnInit {
   positive = true; //positive or negative number, tracks +/- button 
   priviousEntryIsOperator = false; // whether privious entry is an operator
   priviousEntryIsResult = false; //whether we shall restart calculations
+  priviousEntryIsNumber = false; 
 
   constructor(private elementRef: ElementRef) { }
 
@@ -83,12 +84,12 @@ export class CalcComponent implements OnInit {
     this.evaluation += item;
     if (!("+-*/").includes(item) && this.calculations.length < 13) {
       this.calculations += item; //adding new number to displayed ones
-
     }
     this.priviousEntryIsOperator = false;
+    this.priviousEntryIsNumber=true;
   }
   enterOperator(item) {
-    if (item != this.model.operators.plusMinus && !this.firstClick) {
+    if (item != this.model.operators.plusMinus && !this.firstClick && this.priviousEntryIsNumber) {
       this.evaluation += item;
       this.firstClick = true;
     }
@@ -101,6 +102,10 @@ export class CalcComponent implements OnInit {
   }
 
   calculate() {
+    if (this.priviousEntryIsOperator) 
+    {
+      this.evaluation = this.evaluation.slice(0, this.evaluation.length - 1); //deletes the priviously entered operator
+    }
     this.calculations = this.model.evaluate(this.evaluation);
     this.priviousEntryIsResult = true;
     if (this.calculations == "Infinity") {
